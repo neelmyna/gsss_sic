@@ -1,2 +1,0 @@
-This is just a dummy file.
-I have added a new line into the file.
