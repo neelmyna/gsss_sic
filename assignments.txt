@@ -49,7 +49,7 @@ o Name
 o EmpID
 o Basic Monthly Salary
 o Special Allowances (Monthly)
-o Bonus Percentage (Annual Bonus as % of Gross Salary)
+o Bonus Percentage (Annual Bonus as % of Monthly Gross Salary)
 • Calculate:
 o Gross Monthly Salary = Basic Salary + Special Allowances
 o Annual Gross Salary = (Gross Monthly Salary × 12) + Bonus
