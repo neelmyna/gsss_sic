@@ -101,4 +101,5 @@ classes: Exception, ValueError, TypeError etc.
 Chapter3 test link:
 https://forms.gle/3NvKp1pAvWDcif617
 
-https://docs.google.com/spreadsheets/d/18UAk0-x3dpoo8DIjFI2DNSAmKctmOftIqGp9uk1yQ44/edit?gid=2054874283#gid=2054874283
+Repo Link for DSA and Problem Solving
+https://github.com/gmaheswaranmca/au-guvi
