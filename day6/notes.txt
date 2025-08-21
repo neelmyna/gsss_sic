@@ -114,3 +114,12 @@ https://forms.gle/8jwCCQ8wYaaREaBt8
 
 ------------------------------------
 BUBBLE SORT:
+INSERTION SORT:
+BINARY SEARCH:
+LINEAR SEARCH:
+QUICK SORT:
+MERGE SORT:
+RADIX SORT:
+SELECTION SORT: ***
+BUCKET SORT: ***
+HEAP SORT: ***
