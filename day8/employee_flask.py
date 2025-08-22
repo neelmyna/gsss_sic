@@ -1,62 +1,66 @@
 from flask import Flask, jsonify, request
-from person_dao import Person, Db_operations
+from db_operations import EmployeeOperations as EmpOprs, Employee
 
-persons = Db_operations()
+employees = EmpOprs()
+employees.create_database()
+employees.create_table()
 
-persons.create_table()
 app = Flask(__name__)
 
-@app.route('/persons',methods=['POST'])
-def persons_create():
+@app.route('/employees',methods=['POST'])
+def employees_create():
     body = request.get_json()
-    new_person = Person(body['name'], body['gender'], body['dob'], body['location'])
-    print(type(new_person))
-    id = persons.insert_row(new_person)
-    person = persons.search_row(id)
-    person_dict = {'id':person[0], 'name':person[1], 'gender':person[2], 'dob':person[3], 'location': person[4]}
-    return jsonify(person_dict)
+    new_employee = Employee(body['name'], body['designation'], body['phone_number'], body['commission'], body['salary'], body['years_of_exp'], body['location'])
+    print(new_employee)
+    id = employees.insert_row(new_employee)
+    employee = employees.search_row(id)
+    employee_dict = {'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee_dict[3], 'commission': employee[4], 'salary': employee[5], 'years_of_exp': employee[6], 'location': employee[7]}
+    return jsonify(employee_dict)
 
-@app.route('/persons/<id>',methods=['GET'])
-def persons_read_by_id(id):
-    person = persons.search_row(id)
-    if person == None:
-        return jsonify("Person not found")
-    person_dict = {'id':person[0], 'name':person[1], 'gender':person[2], 'dob':person[3], 'location': person[4]}
-    return jsonify(person_dict)
+@app.route('/employees/<id>',methods=['GET'])
+def employees_read_by_id(id):
+    employee = employees.search_row(id)
+    if employee == None:
+        return jsonify("Employee not found")
+    employee_dict = {'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee[3], 'commission':employee[4], 'salary':employee[5], 'years_of_exp':employee[6], 'location': employee[7]}
+    return jsonify(employee_dict)
 
-@app.route('/persons',methods=['GET'])
-def persons_read_all():
-    persons_list = persons.list_all_rows()
-    persons_dict = []
-    for person in persons_list:
-        persons_dict.append({'id':person[0], 'name':person[1], 'gender':person[2], 'dob':person[3], 'location': person[4]})
-    return jsonify(persons_dict)
+@app.route('/employees',methods=['GET'])
+def employees_read_all():
+    employees_list = employees.list_all_rows()
+    employees_dict = []
+    for employee in employees_list:
+        employees_dict.append({'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee[3], 'commission':employee[4], 'salary':employee[5], 'years_of_exp':employee[6], 'location': employee[7]})
+    return jsonify(employees_dict)
 
-@app.route('/persons/<id>',methods=['PUT'])
-def persons_update(id):
+@app.route('/employees/<id>',methods=['PUT'])
+def employees_update(id):
     body = request.get_json()
-    old_peron_obj = persons.search_row(id)
-    if not old_peron_obj:
-        return jsonify({'message': 'Person not found'})
-    new_person_obj = []
-    new_person_obj.append(body['name'])
-    new_person_obj.append(body['gender'])
-    new_person_obj.append(body['location'])
-    new_person_obj.append(body['dob'])
-    new_person_obj.append(id)
-    new_person_obj = tuple(new_person_obj)
-    persons.update_row(new_person_obj)
+    old_employee_obj = employees.search_row(id)
+    if not old_employee_obj:
+        return jsonify({'message': 'Employee not found'})
+    old_employee_obj = []
+    old_employee_obj.append(body['name'])
+    old_employee_obj.append(body['designation'])
+    old_employee_obj.append(body['phone_number'])
+    old_employee_obj.append(body['commission'])
+    old_employee_obj.append(body['salary'])
+    old_employee_obj.append(body['years_of_exp'])
+    old_employee_obj.append(body['location'])
+    old_employee_obj.append(id)
+    old_employee_obj = tuple(old_employee_obj)
+    employees.update_row(old_employee_obj)
 
-    person = persons.search_row(id)
-    person_dict = {'id':person[0], 'name':person[1], 'gender':person[2], 'dob':person[3], 'location': person[4]}
+    employee = employees.search_row(id)
+    person_dict = {'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee[3], 'commission':employee[4], 'salary':employee[5], 'years_of_exp':employee[6], 'location': employee[7]}
     return jsonify(person_dict)
 
-@app.route('/persons/<id>',methods=['DELETE'])
-def persons_delete(id):
-    old_person_obj = persons.search_row(id)
-    if not old_person_obj:
-        return jsonify({'message': 'Person not found', 'is_error': 1})
-    persons.delete_row(id)
-    return jsonify({'message': 'Person is deleted', 'is_error': 0})
+@app.route('/employees/<id>',methods=['DELETE'])
+def employees_delete(id):
+    old_employee_obj = employees.search_row(id)
+    if not old_employee_obj:
+        return jsonify({'message': 'Employee not found', 'is_error': 1})
+    employees.delete_row(id)
+    return jsonify({'message': 'Employee is deleted', 'is_error': 0})
 
 app.run(debug=True)
