@@ -1,0 +1,8 @@
+i++;
+j--;
+a[i] = b[j];
+b[j]++;
+
+a[++i] = b[--j]++;
+
+BUBBLE SORT
