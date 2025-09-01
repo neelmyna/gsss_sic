@@ -40,6 +40,8 @@ def start_app():
         #menu = get_menu()
         #menu.get(choice)()
 
-start_app()
+l1 = [2, 3, 6, 88, 1, 33, 2]
+l1.sort()
+#start_app()
 
 # Method chaining: 'bengaluru'.capitalize().find('benga')

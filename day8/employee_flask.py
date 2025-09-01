@@ -28,10 +28,10 @@ def employees_read_by_id(id):
 @app.route('/employees',methods=['GET'])
 def employees_read_all():
     employees_list = employees.list_all_rows()
-    employees_dict = []
+    employees_list = []
     for employee in employees_list:
-        employees_dict.append({'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee[3], 'commission':employee[4], 'salary':employee[5], 'years_of_exp':employee[6], 'location': employee[7]})
-    return jsonify(employees_dict)
+        employees_list.append({'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee[3], 'commission':employee[4], 'salary':employee[5], 'years_of_exp':employee[6], 'location': employee[7]})
+    return jsonify(employees_list)
 
 @app.route('/employees/<id>',methods=['PUT'])
 def employees_update(id):
@@ -52,8 +52,8 @@ def employees_update(id):
     employees.update_row(old_employee_obj)
 
     employee = employees.search_row(id)
-    person_dict = {'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee[3], 'commission':employee[4], 'salary':employee[5], 'years_of_exp':employee[6], 'location': employee[7]}
-    return jsonify(person_dict)
+    employee_dict = {'id':employee[0], 'name':employee[1], 'designation':employee[2], 'phone_number':employee[3], 'commission':employee[4], 'salary':employee[5], 'years_of_exp':employee[6], 'location': employee[7]}
+    return jsonify(employee_dict)
 
 @app.route('/employees/<id>',methods=['DELETE'])
 def employees_delete(id):
