@@ -231,3 +231,6 @@ def add_node(root, new_node):
 ------------------------------------------------------------
 Chapter5 Assessment Link:
 https://forms.gle/f8VFaAwdzJKozYso9
+
+Chapter6 Assessment Link:
+https://docs.google.com/forms/d/1me7dimznFb3nQB-d36juDpH0Ez-63797O70gVmzU2m4/edit
